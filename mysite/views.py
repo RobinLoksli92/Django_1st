@@ -1,38 +1,30 @@
 import json
 from json import load
 from django.shortcuts import render
+from places.models import Place
 
 
 def show_general(request):
+  features = []
   context = {'places': {
-    "type": "FeatureCollection",
-    "features": [
-      {
-        "type": "Feature",
-        "geometry": {
-          "type": "Point",
-          "coordinates": [37.62, 55.793676]
-        },
-        "properties": {
-          "title": "«Легенды Москвы",
-          "placeId": "moscow_legends",
-          "detailsUrl": "static/places/moscow_legends.json"
-        }
-      },
-      {
-        "type": "Feature",
-        "geometry": {
-          "type": "Point",
-          "coordinates": [37.64, 55.753676]
-        },
-        "properties": {
-          "title": "Крыши24.рф",
-          "placeId": "roofs24",
-          "detailsUrl": "static/places/roofs24.json"
-        }
-      }
-    ]
+      "type": "FeatureCollection",
+      "features": features
   }}
-  
+
+  for place in Place.objects.all():
+    
+    feature = {
+          "type": "Feature",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [place.long, place.lat]
+          },
+          "properties": {
+            "title": place.name,
+            "placeId": place.name,
+            "detailsUrl": "static/places/moscow_legends.json"
+          }
+        }
+    features.append(feature)
   return render(request, 'index.html', context)
 
