@@ -3,7 +3,6 @@ from itertools import count
 from django.conf import settings
 from django.db import models
 
-# Create your models here.
 
 class Place(models.Model):
     name = models.CharField('Название', max_length=200)
