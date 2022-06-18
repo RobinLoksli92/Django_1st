@@ -41,7 +41,7 @@ def show_general(request):
             'placeId': place.name,
             'detailsUrl': f'places/{place.place_id}'
           }
-        }
+    }
     features.append(feature)
   return render(request, 'index.html', context)
 

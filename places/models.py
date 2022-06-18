@@ -1,5 +1,3 @@
-from distutils.command.upload import upload
-from itertools import count
 from django.conf import settings
 from django.db import models
 
@@ -18,7 +16,7 @@ class Place(models.Model):
 
 class Image(models.Model):
     image = models.ImageField('Картинка', null=True, upload_to=settings.MEDIA_ROOT)
-    number = models.IntegerField('Номер картинки', blank=True)
+    number = models.IntegerField('Номер картинки', default=1)
     place = models.ForeignKey(
         Place,
         on_delete=models.CASCADE,
@@ -29,3 +27,6 @@ class Image(models.Model):
 
     def __str__(self):
         return f'{self.place}_{self.number}'
+
+    class Meta:
+        ordering = ['number']
