@@ -16,7 +16,7 @@ class Place(models.Model):
 
 
 class Image(models.Model):
-    image = models.ImageField('Картинка', null=True, upload_to=settings.MEDIA_ROOT)
+    image = models.ImageField('Картинка', null=True)
     number = models.IntegerField('Номер картинки', default=1)
     place = models.ForeignKey(
         Place,
