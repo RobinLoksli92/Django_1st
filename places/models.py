@@ -9,7 +9,6 @@ class Place(models.Model):
     description_long = HTMLField('Полное описание', blank=True)
     long = models.FloatField('Долгота')
     lat = models.FloatField('Широта')
-    place_id = models.CharField('ID места', max_length=100)
 
     def __str__(self):
         return self.name

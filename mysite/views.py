@@ -3,8 +3,8 @@ from places.models import Place, Image
 from django.http import JsonResponse
 
 
-def show_place(request, place_id):
-  place = get_object_or_404(Place, place_id=place_id)
+def show_place(request, id):
+  place = get_object_or_404(Place, id=id)
   images = Image.objects.filter(place=place)
   response_data = {
     'title': place.name,
@@ -39,7 +39,7 @@ def show_general(request):
           'properties': {
             'title': place.name,
             'placeId': place.name,
-            'detailsUrl': f'places/{place.place_id}'
+            'detailsUrl': f'places/{place.id}'
           }
     }
     features.append(feature)
