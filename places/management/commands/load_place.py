@@ -1,19 +1,16 @@
-import numbers
-from urllib.parse import urlparse
 from django.core.management.base import BaseCommand
-from places.models import Place, Image
-import requests
 from django.core.files.base import ContentFile
 import os
+from places.models import Place, Image
+import requests
+from urllib.parse import urlparse
 
 
 class Command(BaseCommand):
     help = 'Places loading'
 
-
     def add_arguments(self, parser):
         parser.add_argument('link', type=str)
-
 
     def handle(self, *args, **options):
         link = options['link']
@@ -40,8 +37,3 @@ class Command(BaseCommand):
                 place=place
             )
             image.image.save(img_name, img_content, save=True)
-            
-
-
-
-
