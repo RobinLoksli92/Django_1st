@@ -18,7 +18,7 @@ class Command(BaseCommand):
         response.raise_for_status()
         place_raw = response.json()
         place, created = Place.objects.get_or_create(
-            name=place_raw['title'],
+            defaults = {'name': place_raw['title']},
             description_short=place_raw['description_short'],
             description_long=place_raw['description_long'],
             long=place_raw['coordinates']['lng'],
