@@ -20,8 +20,8 @@ class Image(models.Model):
     place = models.ForeignKey(
         Place,
         on_delete=models.CASCADE,
-        verbose_name='images',
-        related_name='Картинка',
+        verbose_name='Картинка',
+        related_name='images',
         null=True
     )
 

@@ -6,7 +6,7 @@ from django.urls import reverse
 
 def show_place(request, place_id):
     place = get_object_or_404(Place, id=place_id)
-    images = Image.objects.filter(place=place)
+    images = place.images.all()
     place_details = {
         'title': place.name,
         'imgs': [
